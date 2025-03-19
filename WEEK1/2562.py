@@ -3,6 +3,7 @@ num_list = list()
 
 for i in range(len):
     num_list.append(int(input()))
+    
 print(max(num_list))
 
 
