@@ -8,29 +8,34 @@
 # count = 0
 
 
-# def nQueen(num, n):
+# def nQueen(n):
 #     global count
 #     if n < num:
 
 #         for i in range(num):
 
-#             if not nQueenPosHor[i] and not nQueenPostive[n + i] and not nQueenNegative[n - i + num - 1]:
+#             if (
+#                 not nQueenPosHor[i]
+#                 and not nQueenPostive[n + i]
+#                 and not nQueenNegative[n - i + num - 1]
+#             ):
+
 #                 nQueenPos[n] = i
 
-#                 nQueenPosHor[i] = True
-#                 nQueenPostive[n + i] = True
-#                 nQueenNegative[n - i + num - 1] = True
-#                 nQueen(num, n + 1)
-#                 nQueenPosHor[i] = False
-#                 nQueenPostive[n + i] = False
-#                 nQueenNegative[n - i + num - 1] = False
+#                 nQueenPosHor[i] = nQueenPostive[n + i] = nQueenNegative[
+#                     n - i + num - 1
+#                 ] = True
+#                 nQueen(n + 1)
+#                 nQueenPosHor[i] = nQueenPostive[n + i] = nQueenNegative[
+#                     n - i + num - 1
+#                 ] = False
 
 #     elif n == num:
 #         # print(nQueenPos)
-#         count = count+1
+#         count = count + 1
 
 
-# nQueen(num, 0)
+# nQueen(0)
 # print(count)
 # ====================================================================================================================
 
@@ -68,41 +73,41 @@
 
 # ====================================================================================================================
 # 10971 외판원 순회
-import sys
+# import sys
 
-N = int(input())
-rows = N
-cols = N
-cost = [[0 for j in range(cols)] for i in range(rows)]
-visited = [False] * N
-minCost = float("inf")
+# N = int(input())
+# rows = N
+# cols = N
+# cost = [[0 for j in range(cols)] for i in range(rows)]
+# visited = [False] * N
+# minCost = float("inf")
 
-for i in range(N):
-    cost[i] = list(map(int, sys.stdin.readline().rstrip().split()))
+# for i in range(N):
+#     cost[i] = list(map(int, sys.stdin.readline().rstrip().split()))
 
 
-def tripTo(depth, now, nowCost, start):
-    global minCost
+# def tripTo(depth, now, nowCost, start):
+#     global minCost
 
-    if nowCost >= minCost:
-        return
+#     if nowCost >= minCost:
+#         return
 
-    if depth == N - 1:
-        if cost[now][start] > 0:
-            minCost = min(minCost, nowCost + cost[now][start])
-        return
+#     if depth == N - 1:
+#         if cost[now][start] > 0:
+#             minCost = min(minCost, nowCost + cost[now][start])
+#         return
 
-    for i in range(N):
-        if not visited[i] and cost[now][i] > 0:
-            visited[i] = True
-            tripTo(depth + 1, i, nowCost + cost[now][i], start)
-            visited[i] = False
+#     for i in range(N):
+#         if not visited[i] and cost[now][i] > 0:
+#             visited[i] = True
+#             tripTo(depth + 1, i, nowCost + cost[now][i], start)
+#             visited[i] = False
 
-visited[0]=True
-tripTo(0, 0, 0, 0)
-visited[0]=False
+# visited[0]=True
+# tripTo(0, 0, 0, 0)
+# visited[0]=False
 
-print(minCost)
+# print(minCost)
 # ====================================================================================================================
 
 # ====================================================================================================================
@@ -162,25 +167,21 @@ print(minCost)
 #                 if arr[j][v] - i <= 0:
 #                     drowning[j + 1][v + 1] = True
 
-                
+
 #         for j in range(num + 2):
 #             print("Drowning", drowning[j])
-        
+
 #         for j in range(num):
 #             for v in range(num):
-                
+
 #                 findIsland(drowning, j+1, v+1)
 #                 print()
 #                 for k in range(num + 2):
-                    
+
 #                     print("checking", checking[k])
-                
+
 
 #         print()
-
-       
-
-        
 
 
 #         print("===================================")
@@ -191,7 +192,7 @@ print(minCost)
 
 #     if not checking[i][j]:
 #         if not arr[i][j]:
-            
+
 #             checking[i][j] = True
 #             if not arr[i][j + 1]:  # 우
 #                 if not checking[i][j + 1]:
@@ -221,11 +222,10 @@ print(minCost)
 # ans = 0
 
 
-
 # for i in combinations(cardInfo, 3):
 #     total = sum(i)
 #     if total <= m and total > ans:
-#         ans = total       
+#         ans = total
 
 # print(ans)
 # ====================================================================================================================

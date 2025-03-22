@@ -84,6 +84,7 @@ def dfs(depth, current, total_cost, start):
 
 # 첫 번째 도시부터 탐색 시작
 for start in range(num):
+    
     visited[start] = True
     dfs(0, start, 0, start)
     visited[start] = False
