@@ -1,94 +1,84 @@
 import sys
-from collections import deque
 
-testcase = list(map(str, sys.stdin.readline()))
-result = []
-testcase.pop()
-q = deque(testcase)
-rq = deque(result)
-popCheck = 0
-rightL, leftL, rightS, leftS = 0, 0, 0, 0
-# resultN = 0
-resultFinal = []
+testcase = sys.stdin.readline()
+tmp = 1
+answer = 0
+stack = []
 
+for i in range(len(testcase)):
 
-def check(q, rq):
+    if testcase[i] == "(":
+        stack.append(testcase[i])
+        tmp = tmp * 2
 
-    resultN = 0
-    global rightL, leftL, rightS, leftS
-    global popCheck
-  
+    elif testcase[i] == "[":
+        stack.append(testcase[i])
+        tmp = tmp * 3
 
-    while len(q) > 0:
-        if len(rq) == 0:
-            resultFinal.append(resultN)
-            resultN = 0
-        if rightL <= leftL or rightS <= leftS:
+    elif testcase[i] == ")":
+        if not stack or stack[-1] == "[":
+            answer = 0
+            break
+        if testcase[i-1] == "(":
+            answer = answer + tmp
+        stack.pop()
+        tmp = tmp // 2
 
-            if q[0] == "(":
-                leftS += 1
-                rq.append(q[0])
-                popCheck = 0
-                q.popleft()
-                continue
+    elif testcase[i] == "]":
+        if not stack or stack[-1] == "(":
+            answer = 0
+            break
+        if testcase[i-1] == "[":
+            answer = answer + tmp
+        stack.pop()
+        tmp = tmp // 3
 
-            elif q[0] == ")":
-                rightS += 1
-                if len(rq)>0:
-                    if rq[-1] == "(":
-                        rq.pop()
-                        if popCheck == 1:
-                            resultN = resultN * 2
-                            print(resultN)
-                        else:
-                            resultN = resultN + 2
-                            print(resultN)
-                        popCheck = 1
-                        q.popleft()
-                        continue
+if stack:
+    print(0)
+else:
+    print(answer)
 
-                        # 계산 맞춰주기
-                    else:
-                        return print("error!!")
-                else:
-                    return print("error!!")
+# array = input()
+# tmp = 1
+# answer = 0
+# stack = []
 
-            elif q[0] == "[":
-                leftL += 1
-                rq.append(q[0])
-                popCheck = 0
-                q.popleft()
-                continue
+# for i in range(len(array)):
 
-            elif q[0] == "]":
-                rightL += 1
-                if len(rq)>0:
-                    if rq[-1] == "[":
-                        rq.pop()
-                        if popCheck == 1:
-                            resultN = resultN * 3
-                            print(resultN)
-                        else:
-                            resultN = resultN + 3
-                            print(resultN)
-                        popCheck = 1
-                        q.popleft()
-                        continue
-                        # 계산 맞춰주기
-                    else:
-                        return print("error")
-                else:
-                    return print("error")
+#     # print("!!", array[i])
 
-            # q.popleft()
+#     if array[i] == "(":
+#         stack.append(array[i])
+#         tmp = tmp * 2
+#         # print("tmp",tmp)
 
-        else:
-            return print(0)
+#     elif array[i] == "[":
+#         stack.append(array[i])
+#         tmp = tmp * 3
+#         # print("tmp",tmp)
 
-    if rightL != leftL or rightS != leftS:
-        return print(0)
-    
-    print(resultN)
+#     elif array[i] == ")":
+#         if not stack or stack[-1] == "[":
+#             answer = 0
+#             break
+#         if array[i-1] == "(": # 제일 안쪽 괄호인 경우 더해주기
+#             answer = answer + tmp
+#         stack.pop()
+#         tmp = tmp // 2
+#         # print("tmp",tmp)
 
-check(q,rq)
-# print(rightL, leftL, rightS, leftS)
+#     else:
+#         if not stack or stack[-1] == "(":
+#             answer = 0
+#             break
+#         if array[i-1] == "[": # 제일 안쪽 괄호인 경우 더해주기
+#             answer = answer + tmp
+#         stack.pop()
+#         tmp = tmp // 3
+#     #     print("tmp",tmp)
+#     # print("answer", answer)
+#     # print()
+# if stack:
+#     print(0)
+# else:
+#     print(answer)

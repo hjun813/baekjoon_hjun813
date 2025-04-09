@@ -53,6 +53,7 @@ while len(q) > 0:
 # print("index!!", index)
 # print("result!!", result)
 for i in result:
+    
     print(i, end=" ")
 
 # Monotonic Stack - 단조 감소 스택을 하면 배열 순서로 자기보다 큰 값을 얻을 수 있다.

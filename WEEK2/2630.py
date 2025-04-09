@@ -29,6 +29,7 @@ def divide(n, a, b):  # a,b가 시작점, n 이 사이드 길이
 
     if color == 0:
         whiteCheck += 1
+        
     else:
         blueCheck += 1
 
